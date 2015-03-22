@@ -1,10 +1,10 @@
-<%@ page language="java" pageEncoding="UTF-8" %><!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ include file="/templates/bootstrap/header.jsp" %>
 ${message} ${name}
-</body>
-</html>
+<form action="add">
+<input name="name" value="lalall" />
+<input name="email" value="mail" />
+<input type="submit" value="submit" />
+</form>
+<%@ include file="/templates/bootstrap/script.jsp" %>
+<%@ include file="/templates/bootstrap/footer.jsp" %>
