@@ -3,4 +3,6 @@ hddc*
 RemoteSystemsTempFiles/
 Servers/
 **/target
-**/.setting
+**/.settingEffectiveJava
+!LearScala
+NetBeansProjects
