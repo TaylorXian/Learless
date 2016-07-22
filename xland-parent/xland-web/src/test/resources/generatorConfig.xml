@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!-- optional -->
+	<!-- The <classPathEntry> element is used to add classpath locations to 
+		the classpath of the MyBatis Generator (MBG) run. -->
+	<!-- <classPathEntry location="classpath" /> -->
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<!-- jdbc -->
+		<jdbcConnection driverClass="org.sqlite.JDBC"
+			connectionURL="jdbc:sqlite:xland.db" userId="" password="">
+		</jdbcConnection>
+
+		<!-- The <javaTypeResolver> element is used to define properties of the 
+			Java Type Resolver. The Java Type Resolver is used to calculate Java types 
+			from database column information. The default Java Type Resolver attempts 
+			to make JDBC DECIMAL and NUMERIC types easier to use by substituting Integral 
+			types if possible (Long, Integer, Short, etc.) If this behavior is undesirable, 
+			set the property "forceBigDecimals" to "true". You can also substitute your 
+			own implementation if you want different behavior than the default. This 
+			element is an optional child element of the <context> element. -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="org.xman.xland.core.domain"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator
+			targetPackage="org.xman.xland.core.persistence"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="MIXEDMAPPER"
+			targetPackage="org.xman.xland.core.persistence"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="x_category" domainObjectName="Category">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_score" domainObjectName="Score">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_property" domainObjectName="Property">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_stock" domainObjectName="Stock">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_association" domainObjectName="Association">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_databook" domainObjectName="Databook">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_schedule" domainObjectName="Schedule">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_word" domainObjectName="Word">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+<!-- 
+		<table tableName="x_fellow" domainObjectName="Fellow">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_article" domainObjectName="Article">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_comment" domainObjectName="Comment">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+ -->
+
+	</context>
+</generatorConfiguration>
