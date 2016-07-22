@@ -1,0 +1,6 @@
+.metadata/
+hddc*
+RemoteSystemsTempFiles/
+Servers/
+**/target
+**/.setting
