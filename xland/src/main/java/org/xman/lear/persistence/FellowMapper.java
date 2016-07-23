@@ -131,4 +131,6 @@ public interface FellowMapper {
     int updateByPrimaryKey(Fellow record);
 
 	Fellow findByIdXml(int id);
+
+	Fellow findByName(String name);
 }

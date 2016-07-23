@@ -3,4 +3,5 @@ The problem was inside the web.xml file. Changing the header, and it'll work.
 https://docs.google.com/document/d/1-OnGXInPmEcNEDcgnUalPg9-zprqXPaFwTTJ44oLf5I/edit?pli=1#
 https://docs.google.com/document/d/13XcI828smC3pi2Xdk2t7yV9JGRcV7LZ8r7Y4PjbIV_4/edit?pli=1
 
-2. 
+2. SpringMVC中支持语言国际化
+http://www.blogjava.net/czcode/articles/85024.html

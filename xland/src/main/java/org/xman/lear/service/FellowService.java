@@ -10,4 +10,6 @@ public interface FellowService {
 
 	List<Fellow> findAll();
 
+	Fellow findByName(String name);
+
 }

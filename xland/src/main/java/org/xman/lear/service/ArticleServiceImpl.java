@@ -25,5 +25,15 @@ public class ArticleServiceImpl implements ArticleService {
 		example.setOrderByClause("julianday(ctime) desc");
 		return articleMapper.selectByExample(example);
 	}
+
+	@Override
+	public Article findById(Integer id) {
+		return articleMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void save(Article article) {
+		articleMapper.insert(article);
+	}
 	
 }

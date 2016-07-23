@@ -267,4 +267,7 @@
 	<select id="findByIdXml" parameterType="int" resultMap="BaseResultMap">
 		SELECT <include refid="Base_Column_List" /> FROM x_fellow WHERE id = #{id}
 	</select>
+	<select id="findByName" parameterType="string" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> FROM x_fellow WHERE name = #{name}
+	</select>
 </mapper>

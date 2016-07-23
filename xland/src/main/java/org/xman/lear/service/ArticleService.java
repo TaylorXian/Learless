@@ -10,4 +10,8 @@ public interface ArticleService {
 
 	List<Article> findAllDesc();
 
+	Article findById(Integer id);
+
+	void save(Article article);
+
 }

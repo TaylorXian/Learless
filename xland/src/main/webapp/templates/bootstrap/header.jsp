@@ -1,6 +1,15 @@
-<%@ page language="java" pageEncoding="UTF-8" %><!DOCTYPE html>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+String port = request.getServerPort() == 80 ? "" : ":" + request.getServerPort();
+String base = String.format("%s://%s%s%s/", request.getScheme(),
+		request.getServerName(), port, request.getContextPath());
+%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="<%= base %>">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,14 +42,14 @@
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">XLAND</a>
+				</button><c:url value='/' var='HOME_PATH' />
+				<a class="navbar-brand" href="${HOME_PATH}">学之问</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="usr?name=Eric">作者</a></li>
-					<li><a href="#about">About</a></li>
+					<li class="active"><a href="${HOME_PATH}"><spring:message code="main.home" /></a></li>
+					<li><a href="${HOME_PATH}login">登录</a></li>
+					<li><a href="${HOME_PATH}about">关于我</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
