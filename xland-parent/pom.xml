@@ -10,5 +10,6 @@
     <module>xland-scala-core</module>
     <module>xland-lear</module>
     <module>xland-web</module>
+    <module>xland-util</module>
   </modules>
 </project>

@@ -21,7 +21,6 @@ import org.xman.xland.core.persistence.FellowMapper;
 
 public class PlainMybatis {
 
-	private String resource = "mybatis-config.xml";
 	private SqlSessionFactory sqlSessionFactory;
 
 	public static void main(String[] args) throws IOException {
@@ -56,13 +55,8 @@ public class PlainMybatis {
 	 * @throws IOException
 	 */
 	private void buildingSqlSessionFactoryFromXml() throws IOException {
-		InputStream inputStream = getInputStream();
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-	}
-
-	private InputStream getInputStream() throws IOException {
-		InputStream inputStream = Resources.getResourceAsStream(resource);
-		return inputStream;
+		InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 	}
 
 	/**
@@ -71,7 +65,7 @@ public class PlainMybatis {
 	 * @throws IOException
 	 */
 	private void buildingSqlSessionFactory() throws IOException {
-		DataSource dataSource = getDataSource();
+		DataSource dataSource = getDataSource("db.config.properties");
 		TransactionFactory transactionFactory = new JdbcTransactionFactory();
 		Environment environment = new Environment("development",
 				transactionFactory, dataSource);
@@ -80,11 +74,8 @@ public class PlainMybatis {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
 	}
 
-	private DataSource getDataSource() throws IOException {
-		DataSourceFactory dataSourceFactory = new PooledDataSourceFactory();
-		Properties props = Resources.getResourceAsProperties("db.config.properties");
-		dataSourceFactory.setProperties(props);
-		return dataSourceFactory.getDataSource();
+	private DataSource getDataSource(String filepath) throws IOException {
+		return MybatisDataSource.create(filepath);
 	}
 
 	public SqlSessionFactory getSqlSessionFactory() {

@@ -27,5 +27,6 @@ public class SpringTest {
 		for (Fellow f : fs) {
 			System.out.println(String.format("name=%s email=%s", f.getName(), f.getEmail()));
 		}
+		context.close();
 	}
 }

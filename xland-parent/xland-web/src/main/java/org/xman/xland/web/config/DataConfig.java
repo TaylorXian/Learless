@@ -1,5 +1,8 @@
 package org.xman.xland.web.config;
 
+import java.io.IOException;
+import java.sql.Driver;
+
 import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -9,27 +12,37 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.xman.xland.core.mybatis.MybatisDataSource;
+import org.xman.xland.util.props.PropsUtil;
 
 @Configuration
 @MapperScan("org.xman.xland.core.persistence")
 public class DataConfig {
 
-	@Bean
-	public DataSource dataSource() {
+	private DataSource createSimpleDataSource() throws ClassNotFoundException {
+		PropsUtil props = new PropsUtil("db.config.properties");
 		SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-		dataSource.setDriverClass(org.sqlite.JDBC.class);
-		dataSource.setUrl("jdbc:sqlite:xland.db");
+		dataSource.setDriverClass((Class<? extends Driver>) Class.forName(props.getString("driver")));
+		dataSource.setUrl(props.getString("url"));
 		dataSource.setUsername("");
 		dataSource.setPassword("");
-
 		return dataSource;
+	}
+
+	@Bean
+	public DataSource dataSource() {
+		try {
+			return MybatisDataSource.create("db.config.properties");
+		} catch (IOException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
 	}
 
 	/**
 	 * @param dataSource
 	 * @deprecated
 	 */
-	protected void createTable(SimpleDriverDataSource dataSource) {
+	protected void createTable(DataSource dataSource) {
 		System.out.println("Creating tables");
 		// create a table and populate some data
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

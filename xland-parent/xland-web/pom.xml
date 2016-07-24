@@ -67,11 +67,6 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.xerial</groupId>
-			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.7.15-M1</version>
-		</dependency>
 		<!-- test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>

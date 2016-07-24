@@ -1,10 +1,8 @@
-package org.xman.xland.core;
+package org.xman.xland.util;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-
-import org.xman.xland.util.props.PropsUtil;
 
 /**
  * Unit test for simple App.
@@ -30,12 +28,7 @@ public class AppTest extends TestCase {
 	/**
 	 * Rigourous Test :-)
 	 */
-	public void testPropsUtil() {
-		PropsUtil props = new PropsUtil("db.config.properties");
-		String url = props.getString("url");
-		System.out.println("url is " + url);
-		assertTrue(url.equals("jdbc:sqlite:../xland.db"));
+	public void testApp() {
 		assertTrue(true);
 	}
-
 }

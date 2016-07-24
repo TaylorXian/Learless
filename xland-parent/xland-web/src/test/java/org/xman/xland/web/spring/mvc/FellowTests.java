@@ -42,6 +42,6 @@ public class FellowTests {
 
 	@Test
 	public void getFellow() throws Exception {
-		this.mockMvc.perform(get("/fellow?name=taylor"));
+		this.mockMvc.perform(get("/fellow?name=leo"));
 	}
 }

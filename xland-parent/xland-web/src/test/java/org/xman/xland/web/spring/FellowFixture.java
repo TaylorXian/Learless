@@ -19,7 +19,7 @@ public class FellowFixture {
 
 	@Test
 	public void getFellow() {
-		Fellow f = fellowService.findByName("debxian");
+		Fellow f = fellowService.findByName("leo");
 		System.out.println(f.getName());
 	}
 }
