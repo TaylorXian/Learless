@@ -17,8 +17,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations(
-				"/resources/");
+		registry.addResourceHandler("/resources/**", "/static/**").addResourceLocations(
+				"/resources/", "/mobile-angular-ui-1.2.0-rc.3/");
 	}
 
 	@Override
