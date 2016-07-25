@@ -46,6 +46,62 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
+		<table tableName="x_category" domainObjectName="Category">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_score" domainObjectName="Score">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_property" domainObjectName="Property">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_stock" domainObjectName="Stock">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_association" domainObjectName="Association">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_databook" domainObjectName="Databook">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_schedule" domainObjectName="Schedule">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		<table tableName="x_word" domainObjectName="Word">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID"
+				sqlStatement="select last_insert_rowid()" identity="true" />
+			<columnOverride column="DATE_FIELD" property="startDate" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
 <!-- 
 		<table tableName="x_fellow" domainObjectName="Fellow">
 			<property name="useActualColumnNames" value="false" />

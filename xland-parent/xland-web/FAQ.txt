@@ -1,0 +1,16 @@
+1. When I run the output on the browser is ${name}, Why?
+The problem was inside the web.xml file. Changing the header, and it'll work.
+https://docs.google.com/document/d/1-OnGXInPmEcNEDcgnUalPg9-zprqXPaFwTTJ44oLf5I/edit?pli=1#
+https://docs.google.com/document/d/13XcI828smC3pi2Xdk2t7yV9JGRcV7LZ8r7Y4PjbIV_4/edit?pli=1
+
+2. SpringMVC中支持语言国际化
+http://www.blogjava.net/czcode/articles/85024.html
+
+3. java.lang.AbstractMethodError: org.mybatis.spring.transaction.SpringManagedTransaction.getTimeout()Ljava/lang/Integer;
+ mybatis-spring 从 1.2.2 升级 到 1.3.0
+
+4. create maven parent project and module project
+1) create parent
+mvn archetype:generate -DarchetypeGroupId=org.codehaus.mojo.archetypes -DarchetypeArtifactId=pom-root -DarchetypeVersion=RELEASE
+2) create module
+mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=RELEASE

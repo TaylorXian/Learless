@@ -1,0 +1,11 @@
+def powerOfTwo(x: Int): Int = if (x == 0) 1 else x * powerOfTwo(x - 1)
+println(powerOfTwo(0))
+println(powerOfTwo(1))
+println(powerOfTwo(2))
+println(powerOfTwo(3))
+println(powerOfTwo(4))
+println(powerOfTwo(5))
+println(powerOfTwo(10))
+
+def factorial(x: Int): Int = if (x == 0) 1 else x * factorial(x - 1)
+println("def factorial done.")
