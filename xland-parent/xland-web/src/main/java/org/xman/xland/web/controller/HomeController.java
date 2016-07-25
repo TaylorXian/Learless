@@ -30,4 +30,9 @@ public class HomeController {
 	public String about(ModelMap model) {
 		return "about";
 	}
+
+	@RequestMapping(value = "/mobile", method = RequestMethod.GET)
+	public String mobile(ModelMap model) {
+		return "mobile/angular/index";
+	}
 }
