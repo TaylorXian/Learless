@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <base href="<%= base %>" />
-    <title>Mobile Angular UI</title>
+    <title ng-bind-template="Google Phone Gallery: {{query}}">Mobile Angular UI</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
@@ -25,15 +25,7 @@
   <body>
     <div class="app-body">
       <div class="app-content">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Angular: Hello {{ yourname }} !
-          </div>
-          <div class="panel-body">
-            <label for="">Name: </label>
-            <input type="text" class="form-control" ng-model="yourname" placeholder="Enter a name here..." name="name" value="" />
-          </div>
-        </div>
+        <ng-view></ng-view>
       </div>
     </div>
   </body>

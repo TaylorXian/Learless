@@ -25,9 +25,9 @@ xland.run(function($transform) {
 // in order to avoid unwanted routing.
 //
 xland.config(function($routeProvider) {
-  $routeProvider.when('/',              {templateUrl: 'home.html', reloadOnSearch: false});
-  $routeProvider.when('/scroll',        {templateUrl: 'scroll.html', reloadOnSearch: false});
-  $routeProvider.when('/toggle',        {templateUrl: 'toggle.html', reloadOnSearch: false});
+  $routeProvider.when('/',              {templateUrl: 'word/hello.html', reloadOnSearch: false});
+  $routeProvider.when('/list',          {templateUrl: 'word/w-list.html', reloadOnSearch: false});
+  $routeProvider.when('/word/:id',    {templateUrl: 'word/w-detail.html', reloadOnSearch: false});
   $routeProvider.when('/tabs',          {templateUrl: 'tabs.html', reloadOnSearch: false});
   $routeProvider.when('/accordion',     {templateUrl: 'accordion.html', reloadOnSearch: false});
   $routeProvider.when('/overlay',       {templateUrl: 'overlay.html', reloadOnSearch: false});
@@ -38,6 +38,7 @@ xland.config(function($routeProvider) {
   $routeProvider.when('/drag',          {templateUrl: 'drag.html', reloadOnSearch: false});
   $routeProvider.when('/drag2',         {templateUrl: 'drag2.html', reloadOnSearch: false});
   $routeProvider.when('/carousel',      {templateUrl: 'carousel.html', reloadOnSearch: false});
+  //$routeProvider.otherwise({redirectTo: '/list'});
 });
 
 //
@@ -345,3 +346,15 @@ xland.controller('MainController', function($rootScope, $scope){
     }
   };
 });
+
+xland.controller('WordListCtrl', function($scope, $http) {
+  $http.get('word/all').success(function(data) {
+    $scope.phones = data;
+  });
+  $scope.orderProp = 'age';
+});
+
+xland.controller('WordDetailCtrl', ['$scope', '$routeParams',
+  function($scope, $routeParams) {
+    $scope.id = $routeParams.id;
+  }]);
