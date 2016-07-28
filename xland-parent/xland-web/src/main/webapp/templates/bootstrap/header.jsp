@@ -1,13 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-String port = request.getServerPort() == 80 ? "" : ":" + request.getServerPort();
-String base = String.format("%s://%s%s%s/", request.getScheme(),
-		request.getServerName(), port, request.getContextPath());
-%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="basepath.jsp" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 <base href="<%= base %>">
 <meta charset="utf-8">
