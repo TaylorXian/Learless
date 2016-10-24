@@ -28,6 +28,7 @@ hddc*
 **/*.log
 **/xland.db
 **/.cache*
+**/*.class
 EffectiveJava
 !LearScala
 NetBeansProjects
