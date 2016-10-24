@@ -29,6 +29,7 @@ hddc*
 **/xland.db
 **/.cache*
 **/*.class
+**/*.iml
 EffectiveJava
 !LearScala
 NetBeansProjects
