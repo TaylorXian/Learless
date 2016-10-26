@@ -2,16 +2,20 @@ package org.xman.xland.util.crypto;
 
 import org.apache.commons.codec.binary.Base64;
 
+import javax.crypto.*;
+import javax.crypto.spec.DESKeySpec;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 
 
 /**
+ * <a href="https://my.oschina.net/kkrgwbj/blog/655215">
+ *     JAVA DES加密和解密工具类</a>
  * <a href="http://www.avajava.com/tutorials/lessons/how-do-i-encrypt-and-decrypt-files-using-des.html">
  *     How do I encrypt and decrypt files using DES</a>
  * <a href="http://stackoverflow.com/questions/5520640/encrypting-and-decrypting-using-java">
@@ -25,68 +29,121 @@ import javax.crypto.SecretKey;
  */
 public class DesCryptor {
 
-
-    private static Cipher ecipher;
-    private static Cipher dcipher;
-
-    private static SecretKey key;
+    private final static String DES = "DES";
 
     public static void main(String[] args) {
-
         try {
-            // generate secret key using DES algorithm
-            key = KeyGenerator.getInstance("DES").generateKey();
-
-            ecipher = Cipher.getInstance("DES");
-            dcipher = Cipher.getInstance("DES");
-
             // initialize the ciphers with the given key
-            ecipher.init(Cipher.ENCRYPT_MODE, key);
-            dcipher.init(Cipher.DECRYPT_MODE, key);
-
-            String encrypted = encrypt("This is a classified message!");
-            String decrypted = decrypt(encrypted);
-
+            String data = "123 456";
+            String key = "1qaz@WSX";
+            String encrypted = encrypt("This is a classified message!", key);
+            String decrypted = decrypt(encrypted, key);
             System.out.println("Decrypted: " + decrypted);
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println("No Such Algorithm:" + e.getMessage());
-            return;
-        } catch (NoSuchPaddingException e) {
-            System.out.println("No Such Padding:" + e.getMessage());
-            return;
+
+            String encryptedF = encryptFile(".gitignore", key);
+            System.out.println(encryptedF);
+            Files.write(Paths.get(".encryptedF"), encryptedF.getBytes());
+            System.out.println("Decrypted: " + decryptFile(".encryptedF", key));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static String encryptFile(String path, String key) {
+        byte[] bs = null;
+        try {
+            bs = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+        byte[] en = encrypt(bs, key.getBytes());
+        return Base64.encodeBase64String(en);
+    }
+
+    public static String decryptFile(String path, String key) {
+        byte[] bs = null;
+        try {
+            bs = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+        bs = Base64.decodeBase64(new String(bs));
+        byte[] de = decrypt(bs, key.getBytes());
+        return new String(de);
+    }
+
+    public static String encrypt(String data, String key) {
+        byte[] en = encrypt(data.getBytes(), key.getBytes());
+        return Base64.encodeBase64String(en);
+    }
+
+    public static String decrypt(String data, String key) {
+        byte[] bs = Base64.decodeBase64(data);
+        byte[] de = decrypt(bs, key.getBytes());
+        return new String(de);
+    }
+
+    private static byte[] encrypt(byte[] data, byte[] key) {
+        // 生成一个可以信任的随机数源
+        SecureRandom sr = new SecureRandom();
+        try {
+            // 从原始密钥数据创建DESKeySpec对象
+            DESKeySpec dks = new DESKeySpec(key);
+
+            // 创建一个密钥工厂，然后用它把DESKeySpec转换成SecretKey对象
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
+            SecretKey secretKey = keyFactory.generateSecret(dks);
+
+            // Cipher 对象实际完成加密操作
+            Cipher cipher = Cipher.getInstance(DES);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, sr);
+
+            return cipher.doFinal(data);
         } catch (InvalidKeyException e) {
-            System.out.println("Invalid Key:" + e.getMessage());
-            return;
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e.getMessage(), e);
         }
-
     }
 
-    public static String encrypt(String str) {
+    private static byte[] decrypt(byte[] data, byte[] key) {
+        // 生成一个可以信任的随机数源
+        SecureRandom sr = new SecureRandom();
         try {
-            // encode the string into a sequence of bytes using the named charset
-            // storing the result into a new byte array.
-            byte[] utf8 = str.getBytes("UTF8");
-            byte[] enc = ecipher.doFinal(utf8);
-            // encode to base64
-            enc = Base64.encodeBase64(enc);
-            return new String(enc);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            // 从原始密钥数据创建DESKeySpec对象
+            DESKeySpec dks = new DESKeySpec(key);
 
-        return null;
-    }
+            // 创建一个密钥工厂，然后用它把DESKeySpec转换成SecretKey对象
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
+            SecretKey secretKey = keyFactory.generateSecret(dks);
 
-    public static String decrypt(String str) {
-        try {
-            // decode with base64 to get bytes
-            byte[] dec = Base64.decodeBase64(str.getBytes());
-            byte[] utf8 = dcipher.doFinal(dec);
-            // create new string based on the specified charset
-            return new String(utf8, "UTF8");
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Cipher 对象实际完成加密操作
+            Cipher cipher = Cipher.getInstance(DES);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, sr);
+
+            return cipher.doFinal(data);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e.getMessage(), e);
         }
-        return null;
     }
 }
