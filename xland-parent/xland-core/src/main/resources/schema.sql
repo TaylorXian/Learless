@@ -9,6 +9,7 @@ CREATE TABLE x_fellow (
 	memo VARCHAR(255) NULL,
 	PRIMARY KEY (id)
 );
+
 DROP TABLE IF EXISTS x_comment;
 CREATE TABLE x_comment (
 	id INTEGER NOT NULL,
@@ -19,6 +20,7 @@ CREATE TABLE x_comment (
 	memo VARCHAR(255) NULL,
 	PRIMARY KEY (id)
 );
+
 DROP TABLE IF EXISTS x_article;
 CREATE TABLE x_article (
 	id INTEGER NOT NULL,
@@ -30,5 +32,6 @@ CREATE TABLE x_article (
 	memo VARCHAR(255) NULL,
 	PRIMARY KEY (id)
 );
+
 INSERT INTO x_fellow(id, name) VALUES(1, 'leo');
 INSERT INTO x_fellow(id, name) VALUES(2, 'yui');

@@ -19,13 +19,13 @@ import org.xman.xland.util.props.PropsUtil;
  */
 public class PlainSQLiteJdbc extends JdbcBase {
 
-	String driver = null;
+	private String driver = null;
 
-	String url = null;
+	private String url = null;
 
-	String schemaSql = null;
+	private String schemaSql = null;
 
-	String query = null;
+	private String query = null;
 
 	public PlainSQLiteJdbc() {
 		init();
@@ -36,8 +36,8 @@ public class PlainSQLiteJdbc extends JdbcBase {
 		PropsUtil props = new PropsUtil(dbConfig);
 		driver = props.getString("driver");
 		url = props.getString("url");
-		String ssf = props.getString("schame.sql.file", "schema.sql");
-		schemaSql = getSchameSQL(ssf);
+		String schemaSqlFile = props.getString("schema.sql.file", "schema.sql");
+		schemaSql = getSchemaSQL(schemaSqlFile);
 		query = props.getString("query.sql", "SELECT * FROM x_fellow");
 	}
 
@@ -70,7 +70,7 @@ public class PlainSQLiteJdbc extends JdbcBase {
 		}
 	}
 
-	private String getSchameSQL(String filepath) {
+	private String getSchemaSQL(String filepath) {
 		InputStream input = null;
 		try {
 			input = Resources.getResourceAsStream(filepath);

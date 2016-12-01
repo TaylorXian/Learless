@@ -12,13 +12,12 @@ public class PropsUtil {
   private Properties props = null;
 
   public PropsUtil(String filepath) {
-    InputStream in = PropsUtil.class.getClassLoader()
-      .getResourceAsStream(filepath);
+    InputStream in = PropsUtil.class.getClassLoader().getResourceAsStream(filepath);
     props = new Properties();
     try {
       props.load(in);
     } catch (Exception e) {
-      new RuntimeException(e);
+      throw new RuntimeException(e);
     }
   }
 
