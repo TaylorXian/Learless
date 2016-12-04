@@ -26,7 +26,7 @@ public class PlainMybatis {
 	public static void main(String[] args) throws IOException {
 		PlainMybatis mybatis = new PlainMybatis();
 		mybatis.runFromAnnotation();
-//		mybatis.runFromXml();
+		mybatis.runFromXml();
 	}
 
 	public void runFromAnnotation() throws IOException {

@@ -32,9 +32,9 @@ public class AppTest extends TestCase {
 	 */
 	public void testPropsUtil() {
 		PropsUtil props = new PropsUtil("db.config.properties");
-		String url = props.getString("url");
+		String url = props.getString("driver");
 		System.out.println("url is " + url);
-		assertTrue(url.equals("jdbc:sqlite:../xland.db"));
+		assertTrue(url.equals("org.sqlite.JDBC"));
 		assertTrue(true);
 	}
 

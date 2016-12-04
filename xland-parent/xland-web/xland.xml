@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Reference:
+  http://stackoverflow.com/questions/20064483/deploy-web-application-other-than-webapp-folder-in-apache-tomcat
+  http://tomcat.apache.org/tomcat-7.0-doc/config/context.html
+
+
+  Example:
+
+<Context docBase="/Users/xiandeb/Documents/tomcat-7.0.28/webapps/xland-web"
+         path="/xland-web" reloadable="true" source="org.eclipse.jst.jee.server:xland-web" />
+
+
+  Attributes:
+  docBase
+    The Document Base (also known as the Context Root) directory for this web application,
+    or the pathname to the web application archive file (if this web application is being executed directly from the WAR file).
+
+    You may specify an absolute pathname for this directory or WAR file,
+    or a pathname that is relative to the appBase directory of the owning Host.
+
+    The value of this field must not be set unless the Context element is defined in server.xml
+    or the docBase is not located under the Host's appBase.
+    If a symbolic link is used for docBase then changes to the symbolic link will only be effective
+    after a Tomcat restart or by undeploying and redeploying the context. A context reload is not sufficient.
+
+  path
+    The context path of this web application, which is matched against the beginning of each request URI
+    to select the appropriate web application for processing.
+    All of the context paths within a particular Host must be unique.
+    If you specify a context path of an empty string (""), you are defining the default web application for this Host,
+    which will process all requests not assigned to other Contexts.
+
+    This attribute must only be used when statically defining a Context in server.xml.
+    In all other circumstances, the path will be inferred from the filenames used for either the .xml context file
+    or the docBase.
+
+    Even when statically defining a Context in server.xml, this attribute must not be set
+    unless either the docBase is not located under the Host's appBase or both deployOnStartup and autoDeploy are false.
+    If this rule is not followed, double deployment is likely to result.
+  -->
+<Context docBase="/Users/xiandeb/Documents/luna/workspace/xland-parent/xland-web/target/xland-web"
+  reloadable="true" />
