@@ -11,7 +11,7 @@ import org.xman.xland.core.domain.Article;
 import org.xman.xland.web.service.ArticleService;
 
 @Controller
-public class HomeController {
+public class HomeController extends AbstractController {
 
 	@Autowired
 	private ArticleService articleService;
@@ -23,11 +23,13 @@ public class HomeController {
 			article.setContent(article.getContent().replaceAll("</?.+?>", ""));
 		}
 		model.addAttribute("articles", articles);
+		model.addAttribute("title", "学之问");
 		return "home";
 	}
 
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String about(ModelMap model) {
+		setTitle(model, "关于我");
 		return "about";
 	}
 

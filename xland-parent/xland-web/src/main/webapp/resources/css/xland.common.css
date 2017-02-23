@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+* {
+  font-family: "微软雅黑", "Microsoft YaHei", "Apple LiGothic Medium", serif, monospace !important;
+}
+
+body {
+	min-height: 2000px;
+	padding-top: 72px;
+	color: #121212;
+	background-color: #CCCCFF;
+}
+
+.noshadow {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+
+/**
+ * 简单，洁净，进步
+ * Reference: http://tool.c7sky.com/webcolor/#character_14
+ */
+
+.content {
+  overflow-y: auto;
+}
+
+.main-container {
+	
+}
+
+
+.navbar-mini {
+	background-color: #EEEEEE;
+	border-color: #CCCCCC
+}
+
+.notice {
+	font-size: 2em;
+	font-weight: bold;
+}

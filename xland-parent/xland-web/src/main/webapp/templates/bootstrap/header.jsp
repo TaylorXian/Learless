@@ -22,19 +22,20 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/navbar-fixed-top/navbar-fixed-top.css" rel="stylesheet">
+    <link href="static/css/xland.common.css" rel="stylesheet">
   </head>
   <body>
 	<!-- Fixed navbar -->
-	<div class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar navbar-mini navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button><c:url value='/' var='HOME_PATH' />
 				<a class="navbar-brand" href="${HOME_PATH}">学之问</a>
 			</div>
@@ -42,6 +43,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="${HOME_PATH}"><spring:message code="main.home" /></a></li>
 					<li><a href="${HOME_PATH}login">登录</a></li>
+					<li><a href="${HOME_PATH}register">注册</a></li>
 					<li><a href="${HOME_PATH}about">关于我</a></li>
 				</ul>
 			</div>
