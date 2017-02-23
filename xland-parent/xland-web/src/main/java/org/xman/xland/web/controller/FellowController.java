@@ -14,7 +14,7 @@ import org.xman.xland.web.service.FellowService;
 
 @Controller
 @RequestMapping("/usr")
-public class FellowController {
+public class FellowController extends AbstractController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -35,8 +35,9 @@ public class FellowController {
 	public ModelAndView view() {
 		String name = StringUtils.EMPTY;
 		Fellow fellow = fellowService.findByName(name);
-		ModelAndView mv = new ModelAndView("fellow");
+		ModelAndView mv = new ModelAndView("/usr/fellow");
 		mv.addObject("fellow", fellow);
+		setTitle(mv.getModelMap(), "我的页面");
 		return mv;
 	}
 }
