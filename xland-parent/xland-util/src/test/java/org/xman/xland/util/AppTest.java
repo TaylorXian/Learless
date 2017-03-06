@@ -30,5 +30,14 @@ public class AppTest extends TestCase {
 	 */
 	public void testApp() {
 		assertTrue(true);
+		char[] hs = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8',
+				'9', 'a', 'b', 'c', 'd', 'e', 'f' };
+
+		byte b = 32;
+
+		// priority of Unsigned Right Shift operator higher than Bit And operator
+		System.out.println(hs[b >>> 4 & 0x0F]);
+		System.out.println(hs[b & 0x0F]);
+
 	}
 }
