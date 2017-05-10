@@ -7,7 +7,7 @@
 
   Example:
 
-<Context docBase="/Users/xiandeb/Documents/tomcat-7.0.28/webapps/xland-web"
+<Context docBase="/Users/user/Documents/tomcat-7.0.28/webapps/xland-web"
          path="/xland-web" reloadable="true" source="org.eclipse.jst.jee.server:xland-web" />
 
 
