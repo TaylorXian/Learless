@@ -6,9 +6,16 @@ import Assert._
 @Test
 class AppTest {
 
-    @Test
-    def testOK() = assertTrue(true)
+  @Test
+  def testOK() = {
+    createMap()
+    assertTrue(true)
+  }
 
+  def createMap(): Unit = {
+    val m = Map("topic" -> 4)
+    println(m)
+  }
 }
 
 

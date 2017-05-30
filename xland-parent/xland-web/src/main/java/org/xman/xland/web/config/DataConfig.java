@@ -40,8 +40,8 @@ public class DataConfig {
 
 	/**
 	 * @param dataSource
-	 * @deprecated
 	 */
+	@Deprecated
 	protected void createTable(DataSource dataSource) {
 		System.out.println("Creating tables");
 		// create a table and populate some data
