@@ -6,11 +6,13 @@
 
 body {
 	min-height: 2000px;
-	padding-top: 72px;
-	color: #121212;
-	background-color: #CCCCFF;
+	padding-top: 52px;
+	color: dimgray;
+	background-color: #8CD6C0;
 }
 
+a:link {
+}
 .noshadow {
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -20,20 +22,41 @@ body {
 /**
  * 简单，洁净，进步
  * Reference: http://tool.c7sky.com/webcolor/#character_14
- */
+**/
+.main-container {
+
+}
 
 .content {
   overflow-y: auto;
 }
 
-.main-container {
-	
+.list .list-item {
+  border-bottom: 1px dotted brown;
 }
+.list .list-item .tag {
+  font-size: 0.8em;
+  padding-right: 10px;
+}
+.list .list-item .item-head .title {
+  margin: 10px auto 5px auto;
+  font-size: 2em;
+  font-weight: bold;
+}
+.list .list-item .body {
+  overflow-x: hidden;
+}
+.list .list-item .foot {
 
-
+}
+.text-wrap {
+  overflow-wrap: break-word;
+}
 .navbar-mini {
-	background-color: #EEEEEE;
-	border-color: #CCCCCC
+	background-color: #99EED0;
+	border-color: #CCCCCC;
+  margin-bottom: 0px;
+  font-size: 1.1em;
 }
 
 .notice {
