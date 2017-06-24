@@ -3,6 +3,10 @@ package org.xman.xland.util.crypto;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+/**
+ * Base64 With Padding
+ *
+ */
 public class Base64Tool {
 
 	private static final char[] toBase64 = { 'A', 'B', 'C', 'D', 'E', 'F', 'G',
@@ -25,14 +29,14 @@ public class Base64Tool {
 	/**
 	 * doPadding base64
 	 * 
-	 * @param origin
+	 * @param source
 	 * @param charsetName
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
 	public static String encodeBase64(final String source, String charsetName)
 			throws UnsupportedEncodingException {
-		byte[] src = null;
+		byte[] src;
 		try {
 			src = source.getBytes(charsetName);
 		} catch (UnsupportedEncodingException e) {
@@ -63,12 +67,12 @@ public class Base64Tool {
 			if (si == sl) {
 				dst[di++] = (byte) base64[(b0 << 4) & H_3F];
 				dst[di++] = '=';
-				dst[di++] = '=';
+				dst[di] = '=';
 			} else {
-				int b1 = src[si++] & H_FF;
-				dst[di++] = (byte) base64[(b0 << 4) & H_3F | (b1 >> 2)];
-				dst[di++] = (byte) base64[(b1 << 4) & H_3F];
-				dst[di++] = '=';
+				int b1 = src[si] & H_FF;
+				dst[di++] = (byte) base64[(b0 << 4) & H_3F | (b1 >>> 4)];
+				dst[di++] = (byte) base64[(b1 << 2) & H_3F];
+				dst[di] = '=';
 			}
 		}
 		return dst;
@@ -86,17 +90,15 @@ public class Base64Tool {
 
 	public static String decodeBase64(final String source, String charsetName)
 			throws UnsupportedEncodingException {
-		byte[] src = null;
-		try {
-			src = source.replaceAll("", "").getBytes(charsetName);
-		} catch (UnsupportedEncodingException e) {
-			throw e;
-		}
+		byte[] src;
+		src = source.replaceAll("", "").getBytes(charsetName);
 		byte[] dst = new byte[deLen(src.length)];
 		int len = decode(src, dst);
 
-		byte[] dd = Arrays.copyOf(dst, len);
-		return new String(dd, charsetName);
+		if (dst.length > len) {
+			dst = Arrays.copyOf(dst, len);
+		}
+		return new String(dst, charsetName);
 	}
 
 	private static int decode(byte[] src, byte[] dst) {
@@ -112,11 +114,13 @@ public class Base64Tool {
 			dst[di++] = (byte) ((bits >> 8) & 0xFF);
 			dst[di++] = (byte) (bits & 0xFF);
 		}
-		
+		if (src[--sl] == '=') {
+			di = di - 1;
+		}
+		if (src[--sl] == '=') {
+			di = di - 1;
+		}
 
 		return di;
 	}
-
-	
-	
 }
