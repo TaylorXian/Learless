@@ -22,6 +22,15 @@
 			</dataSource>
 		</environment>
 	</environments>
+	<!--
+	Registering a Mapper
+	If the UserMapper has a corresponding MyBatis XML mapper file in the same classpath location as the mapper interface,
+	it will be parsed automatically by the MapperFactoryBean.
+	There is no need to specify the mapper in a MyBatis configuration file
+	unless the mapper XML files are in a different classpath location.
+	See the SqlSessionFactoryBean's configLocation property for more information.
+	Reference: http://www.mybatis.org/spring/mappers.html
+	 -->
 	<mappers>
 		<mapper resource="org/xman/xland/core/persistence/FellowMapper.xml" />
 	</mappers>

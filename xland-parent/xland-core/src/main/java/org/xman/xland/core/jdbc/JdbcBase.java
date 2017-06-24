@@ -37,6 +37,11 @@ public abstract class JdbcBase {
 		statement.setQueryTimeout(sm_timeout);
 	}
 
+	protected void prepareStatement(String sql) throws SQLException {
+		statement = connection.prepareStatement(sql);
+		statement.setQueryTimeout(sm_timeout);
+	}
+
 	protected void executeUpdate(String update) throws SQLException {
 		statement.executeUpdate(update);
 	}

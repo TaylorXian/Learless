@@ -49,7 +49,7 @@ public class PlainSQLiteJdbc extends JdbcBase {
 			createStatement();
 
 			// create schema
-			executeUpdate(schemaSql);
+			// executeUpdate(schemaSql);
 			// execute query
 			ResultSet rs = executeQuery(query);
 			// println ResultSet
@@ -83,9 +83,13 @@ public class PlainSQLiteJdbc extends JdbcBase {
 		throw new RuntimeException("can't find schema sql file: " + filepath);
 	}
 
+	/**
+	 * UTF-8
+	 *
+	 * @return
+	 */
 	private Charset defaultCharset() {
 		Charset charset = Charset.defaultCharset();
-		System.out.println(charset);
 		return charset;
 	}
 

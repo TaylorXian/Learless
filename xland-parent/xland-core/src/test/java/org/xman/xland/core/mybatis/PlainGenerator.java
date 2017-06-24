@@ -17,17 +17,28 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 public class PlainGenerator {
 
 	public static void main(String[] args) {
+		String configFile = "generatorConfig.xml";
+		generate(configFile);
+		generate("generatorConfig-auth.xml");
+		generate("generatorConfig-resource.xml");
+	}
+
+	private static void generate(String resource) {
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
 		try {
 			// SQLite
-			File configFile = Resources.getResourceAsFile("generatorConfig.xml");
+			File configFile = Resources.getResourceAsFile(resource);
 			ConfigurationParser cp = new ConfigurationParser(warnings);
 			Configuration config = cp.parseConfiguration(configFile);
 			DefaultShellCallback callback = new DefaultShellCallback(overwrite);
 			MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,
 					callback, warnings);
 			myBatisGenerator.generate(null);
+			System.out.println("warnings : ");
+			for (String w : warnings) {
+				System.out.println(w);
+			}
 			System.out.println("PlainGenerator is done.");
 		} catch (IOException e) {
 			e.printStackTrace();

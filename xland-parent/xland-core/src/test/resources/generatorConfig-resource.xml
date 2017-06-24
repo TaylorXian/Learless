@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!-- optional -->
+	<!-- The <classPathEntry> element is used to add classpath locations to 
+		the classpath of the MyBatis Generator (MBG) run. -->
+	<!-- <classPathEntry location="classpath" /> -->
+
+	<properties resource="db.config.properties" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<!-- jdbc -->
+		<jdbcConnection driverClass="${driver}" connectionURL="${url}" userId="" password="" />
+
+		<!-- The <javaTypeResolver> element is used to define properties of the
+			Java Type Resolver. The Java Type Resolver is used to calculate Java types
+			from database column information. The default Java Type Resolver attempts
+			to make JDBC DECIMAL and NUMERIC types easier to use by substituting Integral
+			types if possible (Long, Integer, Short, etc.) If this behavior is undesirable,
+			set the property "forceBigDecimals" to "true". You can also substitute your
+			own implementation if you want different behavior than the default. This
+			element is an optional child element of the <context> element. -->
+		<javaTypeResolver type="org.xman.xland.core.mybatis.MyJavaTypeResolver">
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- resources -->
+		<javaModelGenerator targetPackage="org.xman.xland.core.domain.res"
+							targetProject="xland-parent/xland-core/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="org.xman.xland.core.persistence.res"
+				targetProject="xland-parent/xland-core/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="MIXEDMAPPER"
+							 targetPackage="org.xman.xland.core.persistence.res"
+							 targetProject="xland-parent/xland-core/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<table tableName="res_menu" domainObjectName="Menu">
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ID" sqlStatement="select last_insert_rowid()" identity="true" />
+		</table>
+	</context>
+</generatorConfiguration>

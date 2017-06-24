@@ -1,13 +1,5 @@
 package org.xman.xland.core.mybatis;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
-import org.apache.ibatis.datasource.DataSourceFactory;
-import org.apache.ibatis.datasource.pooled.PooledDataSourceFactory;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
@@ -18,6 +10,10 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.xman.xland.core.domain.Fellow;
 import org.xman.xland.core.persistence.FellowMapper;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class PlainMybatis {
 
@@ -33,7 +29,7 @@ public class PlainMybatis {
 		buildingSqlSessionFactory();
 
 		SqlSession session = sqlSessionFactory.openSession();
-		int id = 1;
+		long id = 1;
 		FellowMapper mapper = session.getMapper(FellowMapper.class);
 		Fellow fellow = mapper.selectByPrimaryKey(id);
 		System.out.println(fellow.getName());
